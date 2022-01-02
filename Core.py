@@ -1,3 +1,4 @@
+'''
 import requests
 import json
 import urllib.request
@@ -23,3 +24,4 @@ country_code = result['country_code2']
 
 for key, value in result.items():
     print(key, ' : ', value)
+'''
