@@ -29,8 +29,8 @@ def geotracker():
         test = json.dumps(result)
         return test
     except:
-        if result.status_code == 429:  # or requests.code.ok
-            return 'ratelimited'
+        if result.data('error') == 'True':  # or requests.code.ok
+            return result.data('resason')
 
 
 '''
