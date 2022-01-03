@@ -1,8 +1,7 @@
-import flask
-from flask import Flask, jsonify, request
-import requests
 import json
-import urllib.request
+import socket
+import requests
+from flask import Flask
 
 app = Flask(__name__)
 
@@ -10,10 +9,13 @@ app = Flask(__name__)
 @app.route('/', methods=["GET"])
 # Initialize Nominatim API
 def geotracker():
-    global result
     ipur = 'https://ipapi.co/'
     ipurr = '/json/'
-    external_ip = request.environ['REMOTE_ADDR']
+    hostname = socket.gethostname()
+    ## getting the IP address using socket.gethostbyname() method
+    external_ip = socket.gethostbyname(hostname)
+    ## printing the hostname and ip_address
+    # external_ip = request.environ['REMOTE_ADDR']
     '''    = ip_address = flask.request.remote_addr
         urllib.request.urlopen('https://ident.me').read().decode('utf8')
         external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')'''
@@ -29,8 +31,7 @@ def geotracker():
         test = json.dumps(result)
         return test
     except:
-        if result.data('error') == 'True':  # or requests.code.ok
-            return result.data('resason')
+        return 'resason'
 
 
 '''
