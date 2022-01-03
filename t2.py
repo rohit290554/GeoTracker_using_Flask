@@ -1,5 +1,7 @@
-'''
+import flask
 from flask import Flask
+
+'''
 from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
@@ -34,3 +36,12 @@ if __name__ == '__main__':
     # on the local development server.
     app.run()
 '''
+
+app = flask.Flask(__name__)
+
+@app.route("/")
+def index():
+    ip_address = flask.request.remote_addr
+    return "Requester IP: " + ip_address
+
+app.run(host="0.0.0.0", port=8080)
