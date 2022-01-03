@@ -20,15 +20,14 @@ def geotracker():
     print('Target IP Addr is : ' + external_ip)
     ip_address = external_ip
     # URL to send the request to
-    request_url = ipur + external_ip + ipurr
-    # Send request and decode the result
-    response = requests.get(request_url)
-    result = response.content.decode()
-    result = json.loads(result)
-    test = json.dumps(result)
     try:
-        if result.data('error') == 'False':
-            return test
+        request_url = ipur + external_ip + ipurr
+        # Send request and decode the result
+        response = requests.get(request_url)
+        result = response.content.decode()
+        result = json.loads(result)
+        test = json.dumps(result)
+        return test
     except:
         if result.data('error') == 'True':  # or requests.code.ok
             return result.data('resason')
