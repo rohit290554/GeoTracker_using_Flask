@@ -7,7 +7,7 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/', methods=["GET"])
+@app.route('/')
 # Initialize Nominatim API
 def geotracker():
     ipur = 'https://ipapi.co/'
@@ -23,6 +23,7 @@ def geotracker():
     result = json.loads(result)
     test = json.dumps(result)
     return test
+
 
 '''
     try:
