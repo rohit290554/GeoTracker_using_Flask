@@ -10,6 +10,7 @@ app = Flask(__name__)
 @app.route('/', methods=["GET"])
 # Initialize Nominatim API
 def geotracker():
+    global result
     ipur = 'https://ipapi.co/'
     ipurr = '/json/'
     external_ip = request.environ['REMOTE_ADDR']
@@ -19,13 +20,17 @@ def geotracker():
     print('Target IP Addr is : ' + external_ip)
     ip_address = external_ip
     # URL to send the request to
-    request_url = ipur + external_ip + ipurr
-    # Send request and decode the result
-    response = requests.get(request_url)
-    result = response.content.decode()
-    result = json.loads(result)
-    test = json.dumps(result)
-    return test
+    try:
+        request_url = ipur + external_ip + ipurr
+        # Send request and decode the result
+        response = requests.get(request_url)
+        result = response.content.decode()
+        result = json.loads(result)
+        test = json.dumps(result)
+        return test
+    except:
+        if result.status_code == 429:  # or requests.code.ok
+            return 'ratelimited'
 
 
 '''
