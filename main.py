@@ -22,7 +22,10 @@ def geotracker():
     result = json.loads(result)
     test = json.dumps(result)
     return test
-    '''try:
+
+
+'''
+    try:
         for key, value in result.items():
             return key, ' : ', value
     except:
