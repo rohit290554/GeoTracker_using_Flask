@@ -1,7 +1,10 @@
-import json
 import socket
+
+import flask
+from flask import Flask, jsonify, request
 import requests
-from flask import Flask
+import json
+import urllib.request
 
 app = Flask(__name__)
 
@@ -11,13 +14,13 @@ app = Flask(__name__)
 def geotracker():
     ipur = 'https://ipapi.co/'
     ipurr = '/json/'
-    hostname = socket.gethostname()
+    '''hostname = socket.gethostname()
     ## getting the IP address using socket.gethostbyname() method
     external_ip = socket.gethostbyname(hostname)
     ## printing the hostname and ip_address
-    # external_ip = request.environ['REMOTE_ADDR']
-    '''    = ip_address = flask.request.remote_addr
-        urllib.request.urlopen('https://ident.me').read().decode('utf8')
+    #external_ip = request.environ['REMOTE_ADDR']'''
+    external_ip  = ip_address = flask.request.remote_addr
+    '''urllib.request.urlopen('https://ident.me').read().decode('utf8')
         external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')'''
     print('Target IP Addr is : ' + external_ip)
     ip_address = external_ip
@@ -31,7 +34,8 @@ def geotracker():
         test = json.dumps(result)
         return test
     except:
-        return 'resason'
+        if result.data('error') == 'True':  # or requests.code.ok
+            return 'resason'
 
 
 '''
