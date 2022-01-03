@@ -12,7 +12,7 @@ app = Flask(__name__)
 def geotracker():
     ipur = 'https://ipapi.co/'
     ipurr = '/json/'
-    external_ip = request.remote_addr
+    external_ip = request.environ['REMOTE_ADDR']
     '''    = ip_address = flask.request.remote_addr
         urllib.request.urlopen('https://ident.me').read().decode('utf8')
         external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')'''
