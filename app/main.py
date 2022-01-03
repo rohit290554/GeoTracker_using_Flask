@@ -3,12 +3,11 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello():
-    return 'tested env setup'
+@app.route("/")
+def home_view():
+    return "<h1>Welcome to Geeks for Geeks</h1>"  # Initialize Nominatim API
 
 
-# Initialize Nominatim API
 '''
 def geotracker():
     ipur = 'https://ipapi.co/'
