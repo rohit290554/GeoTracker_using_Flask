@@ -31,7 +31,3 @@ def geotracker():
     except:
         return 'Error'
 '''
-
-
-def main():
-    return geotracker
